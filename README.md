@@ -3,6 +3,8 @@
 This template includes Vite, Vue 3, Vue Router, Pinya, TypeScript, Prettier,
 ESLint and TailwindCSS.
 
+Based on this [series of articles](https://dev.to/imomaliev/series/13845).
+
 ## Project setup
 
 Clone project with [`degit`](https://github.com/Rich-Harris/degit)

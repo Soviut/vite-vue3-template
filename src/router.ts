@@ -8,7 +8,6 @@ import PassLayout from '@/pages/PassLayout.vue'
 import Login from '@/pages/Login.vue'
 import Logout from '@/pages/Logout.vue'
 
-
 const router = createRouter({
   history: createWebHistory(),
   routes: [

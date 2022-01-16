@@ -15,6 +15,7 @@
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.4.0",
     "@types/jest": "^27.4.0",
     "@typescript-eslint/eslint-plugin": "^5.9.1",
     "@typescript-eslint/parser": "^5.9.1",

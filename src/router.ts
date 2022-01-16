@@ -5,6 +5,10 @@ import Index from '@/pages/Index.vue'
 // for child routes that do not require a parent template
 import PassLayout from '@/pages/PassLayout.vue'
 
+import Login from '@/pages/Login.vue'
+import Logout from '@/pages/Logout.vue'
+
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -12,6 +16,17 @@ const router = createRouter({
       path: '/',
       component: Index,
       name: 'home',
+    },
+
+    {
+      path: '/login',
+      component: Login,
+      name: 'login',
+    },
+    {
+      path: '/logout',
+      component: Logout,
+      name: 'logout',
     },
   ],
 })

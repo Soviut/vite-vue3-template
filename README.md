@@ -8,7 +8,7 @@ ESLint and TailwindCSS.
 Clone project with [`degit`](https://github.com/Rich-Harris/degit)
 
 ```
-degit user/repo
+npx degit soviut/vite-vue3-template project-name
 ```
 
 ### Install dependencies
@@ -17,13 +17,13 @@ degit user/repo
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Start development server
 
 ```
 npm run dev
 ```
 
-### Compiles and minifies for production
+### Compile and minify for production
 
 ```
 npm run build
@@ -35,7 +35,7 @@ npm run build
 npm run preview
 ```
 
-### Run your unit tests
+### Run unit tests
 
 ```
 npm run test
@@ -47,7 +47,7 @@ npm run test
 npm run lint
 ```
 
-### Fix files
+### Format with Prettier
 
 ```
 npm run format
@@ -56,3 +56,9 @@ npm run format
 ## Recommended IDE Setup
 
 - [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+
+## Install pre-commit hooks
+
+```
+pre-commit install
+```

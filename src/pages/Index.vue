@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header>
+    <header class="mb-8">
       <h1>Home</h1>
     </header>
 

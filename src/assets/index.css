@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-light;
+  }
+
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  a {
+    @apply text-primary-500;
+  }
+
+  a:hover {
+    @apply underline;
+  }
+
+  .text-muted {
+    @apply text-secondary-500;
+  }
+}
+
+/* SCROLLBARS */
+
+@layer base {
+  /* Works on Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: blue orange;
+  }
+
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  *::-webkit-scrollbar-track {
+    @apply bg-secondary-300;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply bg-primary-500;
+  }
+}
+
+/* FORMS */
+
+@layer components {
+  .form-label {
+    @apply block;
+  }
+
+  input[type='text'],
+  input[type='password'],
+  input[type='email'],
+  input[type='number'],
+  input[type='url'],
+  input[type='date'],
+  input[type='datetime-local'],
+  input[type='month'],
+  input[type='week'],
+  input[type='time'],
+  input[type='search'],
+  input[type='tel'],
+  input[type='file'],
+  select,
+  select[multiple],
+  textarea {
+    @apply rounded
+      w-full px-3 py-2
+      border border-gray-300 focus:border-gray-300
+      focus:ring-2 focus:ring-offset-2 focus:ring-primary-500/50
+      focus:outline-none;
+  }
+
+  select {
+    @apply pr-10;
+  }
+
+  input[type='checkbox'],
+  input[type='radio'] {
+    @apply rounded
+      border border-gray-300 focus:border-gray-300
+      focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50
+
+      hover:bg-gray-100
+
+      checked:bg-primary-500 checked:border-transparent
+      dark:checked:bg-primary-500 dark:checked:border-transparent
+
+      focus:checked:bg-primary-500
+      focus:hover:checked:bg-primary-400
+
+      hover:checked:bg-primary-400
+      dark:hover:checked:bg-primary-400
+
+      cursor-pointer;
+  }
+
+  input[type='radio'] {
+    @apply rounded-full;
+  }
+
+  .checkbox-lg {
+    @apply p-3;
+  }
+}

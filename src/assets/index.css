@@ -93,11 +93,11 @@
   select,
   select[multiple],
   textarea {
-    @apply rounded
-      w-full px-3 py-2
-      border border-gray-300 focus:border-gray-300
-      focus:ring-2 focus:ring-offset-2 focus:ring-primary-500/50
-      focus:outline-none;
+    @apply w-full
+      rounded border border-gray-300
+      px-3 py-2 focus:border-gray-300
+      focus:outline-none focus:ring-2 focus:ring-primary-500/50
+      focus:ring-offset-2;
   }
 
   select {
@@ -106,22 +106,22 @@
 
   input[type='checkbox'],
   input[type='radio'] {
-    @apply rounded
-      border border-gray-300 focus:border-gray-300
-      focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50
+    @apply cursor-pointer
+      rounded border border-gray-300
+      checked:border-transparent checked:bg-primary-500 hover:bg-gray-100 hover:checked:bg-primary-400
 
-      hover:bg-gray-100
+      focus:border-gray-300
 
-      checked:bg-primary-500 checked:border-transparent
-      dark:checked:bg-primary-500 dark:checked:border-transparent
+      focus:ring-2 focus:ring-primary-500
+      focus:ring-opacity-50 focus:ring-offset-2
 
       focus:checked:bg-primary-500
       focus:hover:checked:bg-primary-400
 
-      hover:checked:bg-primary-400
-      dark:hover:checked:bg-primary-400
+      dark:checked:border-transparent
+      dark:checked:bg-primary-500
 
-      cursor-pointer;
+      dark:hover:checked:bg-primary-400;
   }
 
   input[type='radio'] {

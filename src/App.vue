@@ -9,7 +9,7 @@ const store = useStore()
     <header class="flex bg-gray-900">
       <router-link
         :to="{ name: 'home' }"
-        class="p-5 text-white text-2xl font-thin hover:no-underline"
+        class="p-5 text-2xl font-thin text-white hover:no-underline"
       >
         Template
       </router-link>
@@ -17,18 +17,18 @@ const store = useStore()
       <nav class="flex">
         <router-link
           :to="{ name: 'home' }"
-          class="p-5 border-b-4 border-transparent hover:no-underline hover:text-white"
+          class="border-b-4 border-transparent p-5 hover:text-white hover:no-underline"
           active-class="border-primary-500 text-white"
         >
           Home
         </router-link>
       </nav>
 
-      <nav class="flex ml-auto">
+      <nav class="ml-auto flex">
         <router-link
           v-if="store.currentUser"
           :to="{ name: 'login' }"
-          class="p-5 border-b-4 border-transparent hover:no-underline hover:text-white"
+          class="border-b-4 border-transparent p-5 hover:text-white hover:no-underline"
           active-class="border-primary-500 text-white"
         >
           Login
@@ -37,7 +37,7 @@ const store = useStore()
         <router-link
           v-else
           :to="{ name: 'logout' }"
-          class="p-5 border-b-4 border-transparent hover:no-underline hover:text-white"
+          class="border-b-4 border-transparent p-5 hover:text-white hover:no-underline"
           active-class="border-primary-500 text-white"
         >
           Logout

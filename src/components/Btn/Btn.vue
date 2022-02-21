@@ -32,10 +32,10 @@ const isDisabled = computed(
         ? 'a'
         : 'button'
     "
-    class="inline-block rounded focus:outline-none focus:ring-2 focus:ring-offset-2 hover:no-underline transition-colors duration-100 border text-center"
+    class="inline-block rounded border text-center transition-colors duration-100 hover:no-underline focus:outline-none focus:ring-2 focus:ring-offset-2"
     :class="{
       'px-2 py-1 text-sm': size === 'sm',
-      'px-3 py-2 text-md': size === 'md',
+      'text-md px-3 py-2': size === 'md',
       'px-4 py-3 text-lg': size === 'lg',
 
       'focus:ring-secondary-500 focus:ring-opacity-40':
@@ -51,36 +51,36 @@ const isDisabled = computed(
       'focus:ring-info-400 focus:ring-opacity-50':
         !isDisabled && variant === 'info',
 
-      'bg-secondary-400 hover:bg-secondary-500 text-white':
+      'bg-secondary-400 text-white hover:bg-secondary-500':
         !isDisabled && !outline && variant === 'secondary',
-      'bg-primary-500 hover:bg-primary-600 text-white':
+      'bg-primary-500 text-white hover:bg-primary-600':
         !isDisabled && !outline && variant === 'primary',
-      'bg-danger-500 hover:bg-danger-600 text-white':
+      'bg-danger-500 text-white hover:bg-danger-600':
         !isDisabled && !outline && variant === 'danger',
-      'bg-warning-500 hover:bg-warning-600 text-white':
+      'bg-warning-500 text-white hover:bg-warning-600':
         !isDisabled && !outline && variant === 'warning',
-      'bg-success-500 hover:bg-success-600 text-white':
+      'bg-success-500 text-white hover:bg-success-600':
         !isDisabled && !outline && variant === 'success',
-      'bg-info-400 hover:bg-info-500 text-white':
+      'bg-info-400 text-white hover:bg-info-500':
         !isDisabled && !outline && variant === 'info',
 
       'border-transparent': !outline,
 
-      'border-secondary-400 hover:border-transparent hover:bg-secondary-400 text-secondary-500 hover:text-white':
+      'border-secondary-400 text-secondary-500 hover:border-transparent hover:bg-secondary-400 hover:text-white':
         !isDisabled && outline && variant === 'secondary',
-      'border-primary-500 hover:border-transparent hover:bg-primary-500 text-primary-600 hover:text-white':
+      'border-primary-500 text-primary-600 hover:border-transparent hover:bg-primary-500 hover:text-white':
         !isDisabled && outline && variant === 'primary',
-      'border-danger-500 hover:border-transparent hover:bg-danger-500 text-danger-600 hover:text-white':
+      'border-danger-500 text-danger-600 hover:border-transparent hover:bg-danger-500 hover:text-white':
         !isDisabled && outline && variant === 'danger',
-      'border-warning-500 hover:border-transparent hover:bg-warning-500 text-warning-600 hover:text-white':
+      'border-warning-500 text-warning-600 hover:border-transparent hover:bg-warning-500 hover:text-white':
         !isDisabled && outline && variant === 'warning',
-      'border-success-500 hover:border-transparent hover:bg-success-500 text-success-600 hover:text-white':
+      'border-success-500 text-success-600 hover:border-transparent hover:bg-success-500 hover:text-white':
         !isDisabled && outline && variant === 'success',
-      'border-info-400 hover:border-transparent hover:bg-info-400 text-info-600 hover:text-white':
+      'border-info-400 text-info-600 hover:border-transparent hover:bg-info-400 hover:text-white':
         !isDisabled && outline && variant === 'info',
 
       'cursor-pointer': !isDisabled,
-      'focus:ring-0 bg-disabled-300 text-disabled-600 cursor-not-allowed':
+      'cursor-not-allowed bg-disabled-300 text-disabled-600 focus:ring-0':
         isDisabled,
     }"
   >

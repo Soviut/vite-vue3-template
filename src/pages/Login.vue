@@ -27,7 +27,7 @@ const login = async () => {
 </script>
 
 <template>
-  <div class="mx-auto max-w-md p-5 border rounded">
+  <div class="mx-auto max-w-md rounded border p-5">
     <header class="mb-8 text-center">
       <h1>Sign in</h1>
     </header>
@@ -55,7 +55,7 @@ const login = async () => {
         />
       </div>
 
-      <div class="flex items-center mb-8">
+      <div class="mb-8 flex items-center">
         <input
           id="show-password"
           v-model="showPassword"

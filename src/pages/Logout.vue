@@ -13,7 +13,7 @@ const logout = async () => {
 </script>
 
 <template>
-  <div class="mx-auto max-w-md p-5 border rounded text-center">
+  <div class="mx-auto max-w-md rounded border p-5 text-center">
     <header class="mb-8">
       <h1>Sign out</h1>
     </header>

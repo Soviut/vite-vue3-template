@@ -9,3 +9,9 @@ export type Variant =
   | 'success'
   | 'warning'
   | 'danger'
+
+// use for props that behave like :class
+export type VueClassAttr =
+  | string
+  | Record<string, boolean>
+  | (string | Record<string, boolean>)[]

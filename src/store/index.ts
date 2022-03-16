@@ -9,7 +9,7 @@ export const useStore = defineStore('main', {
   }),
 
   actions: {
-    async login(email: string, password: string) {
+    async login(email: string, _password: string) {
       // TODO: call auth service here
 
       this.currentUser = {

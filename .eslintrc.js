@@ -19,6 +19,15 @@ module.exports = {
     'plugin:jest/recommended',
     'prettier',
   ],
+  rules: {
+    // allow vue component files to be a single word eg: Index.vue
+    'vue/multi-word-component-names': 'off',
+    // allow unused args that start with an underscore
+    '@typescript-eslint/no-unused-vars': [
+      2,
+      { args: 'all', argsIgnorePattern: '^_' },
+    ],
+  },
   overrides: [
     {
       files: [

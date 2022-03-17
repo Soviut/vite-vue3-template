@@ -3,3 +3,8 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+[dev]
+  autoLaunch = false
+  # do not inject any .env files when empty
+  envFiles = []

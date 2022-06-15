@@ -46,7 +46,11 @@ const store = useStore()
     </header>
 
     <main class="container mx-auto px-5 py-10">
-      <router-view />
+      <suspense>
+        <router-view v-slot="{ Component, route: pageRoute }">
+          <component :is="Component" :key="pageRoute.path" />
+        </router-view>
+      </suspense>
     </main>
   </div>
 </template>

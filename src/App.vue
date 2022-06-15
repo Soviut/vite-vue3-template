@@ -26,7 +26,7 @@ const store = useStore()
 
       <nav class="ml-auto flex">
         <router-link
-          v-if="store.currentUser"
+          v-if="!store.currentUser"
           :to="{ name: 'login' }"
           class="border-b-4 border-transparent p-5 hover:text-white hover:no-underline"
           active-class="border-primary-500 text-white"

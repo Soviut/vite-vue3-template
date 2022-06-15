@@ -46,7 +46,9 @@ const store = useStore()
     </header>
 
     <main class="container mx-auto px-5 py-10">
-      <router-view />
+      <suspense>
+        <router-view />
+      </suspense>
     </main>
   </div>
 </template>

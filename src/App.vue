@@ -26,7 +26,7 @@ const store = useStore()
 
       <nav class="ml-auto flex">
         <router-link
-          v-if="store.currentUser"
+          v-if="!store.currentUser"
           :to="{ name: 'login' }"
           class="border-b-4 border-transparent p-5 hover:text-white hover:no-underline"
           active-class="border-primary-500 text-white"
@@ -46,7 +46,11 @@ const store = useStore()
     </header>
 
     <main class="container mx-auto px-5 py-10">
-      <router-view />
+      <suspense>
+        <router-view v-slot="{ Component, route: pageRoute }">
+          <component :is="Component" :key="pageRoute.path" />
+        </router-view>
+      </suspense>
     </main>
   </div>
 </template>

@@ -57,11 +57,14 @@ npm run format
 
 ## Recommended IDE Setup
 
-- [VSCode](https://code.visualstudio.com/) +
-  [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+- [VSCode](https://code.visualstudio.com/)
+- [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+- [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin)
 
-## Install pre-commit hooks
+## Pre-Commit
 
-```
-pre-commit install
-```
+[Pre-commit](https://pre-commit.com/) is a local development tool that ensures
+all linting and code style guidelines pass before committing code to a branch.
+
+It will run every time you commit so be prepared for a commit to take a few
+seconds to complete.

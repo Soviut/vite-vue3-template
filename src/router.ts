@@ -2,8 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useStore } from './store'
 
 import Index from '@/pages/Index.vue'
-// for child routes that do not require a parent template
-// import PassLayout from '@/pages/PassLayout.vue'
 
 import Login from '@/pages/Login.vue'
 import Logout from '@/pages/Logout.vue'

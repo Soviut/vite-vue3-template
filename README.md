@@ -49,6 +49,12 @@ npm run test
 npm run lint
 ```
 
+### Check for type errors
+
+```
+npm run check
+```
+
 ### Format with Prettier
 
 ```

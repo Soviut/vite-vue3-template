@@ -10,6 +10,8 @@ export type Variant =
   | 'warning'
   | 'danger'
 
+export type Size = 'sm' | 'md' | 'lg'
+
 // use for props that behave like :class
 export type VueClassAttr =
   | string

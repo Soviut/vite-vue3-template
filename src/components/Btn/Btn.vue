@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, useAttrs } from 'vue'
-import { Variant } from '@/types'
+import { Variant } from '@@/types'
 
 withDefaults(
   defineProps<{

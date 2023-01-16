@@ -17,6 +17,7 @@ export default defineConfig({
   resolve: {
     alias: [
       { find: '@', replacement: '/src' },
+      { find: '@@', replacement: '/' },
       {
         find: 'vue-i18n',
         replacement: 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js',

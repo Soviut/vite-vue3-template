@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { useStore } from '@/store'
-import { Btn } from '@/components'
+import { Btn, PromptPanel } from '@/components'
 
 const router = useRouter()
 const store = useStore()
@@ -13,17 +13,17 @@ const logout = async () => {
 </script>
 
 <template>
-  <div class="mx-auto max-w-md rounded border p-5 text-center">
-    <header class="mb-8">
+  <PromptPanel>
+    <template #header>
       <h1>{{ $t('pages.logout.title') }}</h1>
-    </header>
+    </template>
 
     <p class="mb-8">{{ $t('pages.logout.confirm') }}</p>
 
-    <hr class="mb-8" />
-
-    <Btn variant="danger" class="!block w-full" @click="logout">
-      {{ $t('actions.logout') }}
-    </Btn>
-  </div>
+    <template #actions>
+      <Btn variant="danger" class="!block w-full" @click="logout">
+        {{ $t('actions.logout') }}
+      </Btn>
+    </template>
+  </PromptPanel>
 </template>

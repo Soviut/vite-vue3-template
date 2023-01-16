@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from '@/store'
-import { Btn } from '@/components'
+import { Btn, PromptPanel } from '@/components'
 
 const router = useRouter()
 const route = useRoute()
@@ -27,12 +27,12 @@ const login = async () => {
 </script>
 
 <template>
-  <div class="mx-auto max-w-md rounded border p-5">
-    <header class="mb-8 text-center">
-      <h1>Sign in</h1>
-    </header>
+  <PromptPanel>
+    <template #header>
+      <h1>{{ $t('pages.login.title') }}</h1>
+    </template>
 
-    <form @submit.prevent="login">
+    <form id="login" @submit.prevent="login">
       <div class="mb-5">
         <label for="email" class="sr-only">{{ $t('forms.login.email') }}</label>
         <input
@@ -69,12 +69,12 @@ const login = async () => {
           $t('forms.login.showPassword')
         }}</label>
       </div>
+    </form>
 
-      <hr class="mb-8" />
-
-      <Btn type="submit" variant="primary" class="!block w-full">{{
+    <template #actions>
+      <Btn type="submit" variant="primary" class="!block w-full" form="login">{{
         $t('actions.login')
       }}</Btn>
-    </form>
-  </div>
+    </template>
+  </PromptPanel>
 </template>

@@ -41,6 +41,10 @@
   .text-muted {
     @apply text-secondary-500;
   }
+
+  hr {
+    @apply border-gray-200 dark:border-gray-600;
+  }
 }
 
 /* SCROLLBARS */
@@ -91,8 +95,9 @@
   textarea {
     @apply w-full
       rounded border border-gray-300
-      px-3 py-2 focus:border-gray-300
-      focus:outline-none focus:ring-2 focus:ring-primary-500/50
+      px-3 py-2 text-gray-900
+      focus:border-gray-300 focus:outline-none focus:ring-2
+      focus:ring-primary-500/50
       focus:ring-offset-2;
   }
 

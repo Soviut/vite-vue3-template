@@ -29,17 +29,17 @@ const toggleDark = useToggle(isDark)
         </router-link>
       </nav>
 
-      <button
-        class="py-4 text-primary-500 hover:text-white hover:no-underline"
-        active-class="bg-gray-800 text-white"
-        @click="toggleDark()"
-      >
-        <SunIcon v-if="isDark" class="mx-auto h-6 w-6" />
-        <MoonIcon v-else class="mx-auto h-6 w-6" />
-        <span class="sr-only">{{ isDark ? 'Light Mode' : 'Dark Mode' }}</span>
-      </button>
-
       <nav class="ml-auto flex">
+        <button
+          class="py-4 px-5 text-primary-500 hover:text-white hover:no-underline"
+          active-class="bg-gray-800 text-white"
+          @click="toggleDark()"
+        >
+          <SunIcon v-if="isDark" class="mx-auto h-6 w-6" />
+          <MoonIcon v-else class="mx-auto h-6 w-6" />
+          <span class="sr-only">{{ isDark ? 'Light Mode' : 'Dark Mode' }}</span>
+        </button>
+
         <router-link
           v-if="!store.currentUser"
           :to="{ name: 'login' }"

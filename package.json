@@ -9,7 +9,6 @@
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.vue",
     "test": "vitest",
-    "test:watch": "vitest --watch",
     "test:coverage": "vitest run --coverage"
   },
   "pre-commit": [

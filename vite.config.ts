@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -21,5 +22,9 @@ export default defineConfig({
         replacement: 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js',
       },
     ],
+  },
+
+  test: {
+    environment: 'jsdom',
   },
 })

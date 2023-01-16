@@ -1,2 +1,57 @@
 ---
+# brand
 title: Template
+
+# top level site navigation
+nav:
+  home: Home
+  login: Login
+  logout: Logout
+
+# used in combination with "<action>Model" keys
+# intended to dry up "create item", "create other", etc.
+models:
+  item: Item
+
+# used for buttons and menu items
+# note that "<action>Model" keys should be used with models keys
+actions:
+  login: Sign In
+  logout: Sign Out
+  create: Create
+  edit: Edit
+  delete: Delete
+  update: Update
+  confirm: Confirm
+  cancel: Cancel
+  save: Save
+
+# used for prompts and alerts
+messages:
+  noItems: There are currently no items
+
+# form labels should have no suffix (eg: "email")
+# placeholders should have "<field>Placeholder" suffix
+# help text should have "<field>Help" suffix
+forms:
+  login:
+    email: Email
+    emailPlaceholder: Email
+    password: Password
+    passwordPlaceholder: Password
+    showPassword: Show password
+
+# component-specific copy only
+components: []
+
+# page-specific headings and copy only
+# make sure keys that belong in actions or messages do not go here!
+pages:
+  home:
+    title: Home
+
+  login:
+    title: Sign In
+  logout:
+    title: Sign Out
+    confirm: Are you sure you want to sign out?

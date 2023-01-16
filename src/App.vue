@@ -11,7 +11,7 @@ const store = useStore()
         :to="{ name: 'home' }"
         class="p-5 text-2xl font-thin text-white hover:no-underline"
       >
-        Template
+        {{ $t('title') }}
       </router-link>
 
       <nav class="flex">
@@ -20,7 +20,7 @@ const store = useStore()
           class="border-b-4 border-transparent p-5 hover:text-white hover:no-underline"
           active-class="border-primary-500 text-white"
         >
-          Home
+          {{ $t('nav.home') }}
         </router-link>
       </nav>
 
@@ -31,7 +31,7 @@ const store = useStore()
           class="border-b-4 border-transparent p-5 hover:text-white hover:no-underline"
           active-class="border-primary-500 text-white"
         >
-          Login
+          {{ $t('nav.login') }}
         </router-link>
 
         <router-link
@@ -40,7 +40,7 @@ const store = useStore()
           class="border-b-4 border-transparent p-5 hover:text-white hover:no-underline"
           active-class="border-primary-500 text-white"
         >
-          Logout
+          {{ $t('nav.logout') }}
         </router-link>
       </nav>
     </header>

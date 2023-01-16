@@ -7,7 +7,7 @@ const message = ref('Hello world')
 <template>
   <div>
     <header class="mb-8">
-      <h1>Home</h1>
+      <h1>{{ $t('pages.home.title') }}</h1>
     </header>
 
     <div>

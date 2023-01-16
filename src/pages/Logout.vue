@@ -15,15 +15,15 @@ const logout = async () => {
 <template>
   <div class="mx-auto max-w-md rounded border p-5 text-center">
     <header class="mb-8">
-      <h1>Sign out</h1>
+      <h1>{{ $t('pages.logout.title') }}</h1>
     </header>
 
-    <p class="mb-8">Are you sure you want to sign out?</p>
+    <p class="mb-8">{{ $t('pages.logout.confirm') }}</p>
 
     <hr class="mb-8" />
 
     <Btn variant="danger" class="!block w-full" @click="logout">
-      Yes, sign me out
+      {{ $t('actions.logout') }}
     </Btn>
   </div>
 </template>

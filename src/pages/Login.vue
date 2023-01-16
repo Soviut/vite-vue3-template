@@ -34,23 +34,25 @@ const login = async () => {
 
     <form @submit.prevent="login">
       <div class="mb-5">
-        <label for="email" class="sr-only">Email Address</label>
+        <label for="email" class="sr-only">{{ $t('forms.login.email') }}</label>
         <input
           id="email"
           v-model="email"
           type="email"
-          placeholder="Email Address"
+          :placeholder="$t('forms.login.emailPlaceholder')"
           required
         />
       </div>
 
       <div class="mb-1">
-        <label for="password" class="sr-only">Password</label>
+        <label for="password" class="sr-only">{{
+          $t('forms.login.password')
+        }}</label>
         <input
           id="password"
           v-model="password"
           :type="showPassword ? 'text' : 'password'"
-          placeholder="Password"
+          :placeholder="$t('forms.login.passwordPlaceholder')"
           required
         />
       </div>
@@ -63,12 +65,16 @@ const login = async () => {
           type="checkbox"
         />
 
-        <label for="show-password" class="text-sm">Show Password</label>
+        <label for="show-password" class="text-sm">{{
+          $t('forms.login.showPassword')
+        }}</label>
       </div>
 
       <hr class="mb-8" />
 
-      <Btn type="submit" variant="primary" class="!block w-full">Sign in</Btn>
+      <Btn type="submit" variant="primary" class="!block w-full">{{
+        $t('actions.login')
+      }}</Btn>
     </form>
   </div>
 </template>

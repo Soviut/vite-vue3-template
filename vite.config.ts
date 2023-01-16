@@ -26,5 +26,7 @@ export default defineConfig({
 
   test: {
     environment: 'jsdom',
+    // remove or set to 'default' to only show failing tests
+    reporters: 'verbose',
   },
 })

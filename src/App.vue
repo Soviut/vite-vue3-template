@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { useStore } from '@/store'
+import { useDark, useToggle } from '@vueuse/core'
+import { SunIcon, MoonIcon } from '@heroicons/vue/24/solid'
 
 const store = useStore()
+
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
 </script>
 
 <template>
@@ -23,6 +28,16 @@ const store = useStore()
           {{ $t('nav.home') }}
         </router-link>
       </nav>
+
+      <button
+        class="py-4 text-primary-500 hover:text-white hover:no-underline"
+        active-class="bg-gray-800 text-white"
+        @click="toggleDark()"
+      >
+        <SunIcon v-if="isDark" class="mx-auto h-6 w-6" />
+        <MoonIcon v-else class="mx-auto h-6 w-6" />
+        <span class="sr-only">{{ isDark ? 'Light Mode' : 'Dark Mode' }}</span>
+      </button>
 
       <nav class="ml-auto flex">
         <router-link

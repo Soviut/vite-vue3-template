@@ -5,8 +5,8 @@ title: Template
 # top level site navigation
 nav:
   home: Home
-  login: Login
-  logout: Logout
+  login: Sign In
+  logout: Sign Out
 
 # used in combination with "<action>Model" keys
 # intended to dry up "create item", "create other", etc.

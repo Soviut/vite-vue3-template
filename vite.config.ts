@@ -24,6 +24,10 @@ export default defineConfig({
     ],
   },
 
+  server: {
+    port: 3000, // default is 5173 (site)
+  },
+
   test: {
     environment: 'jsdom',
     // remove or set to 'default' to only show failing tests

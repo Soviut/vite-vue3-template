@@ -44,7 +44,7 @@ const login = async () => {
         />
       </div>
 
-      <div class="mb-1">
+      <div class="mb-2">
         <label for="password" class="sr-only">{{
           $t('forms.login.password')
         }}</label>

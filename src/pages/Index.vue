@@ -1,5 +1,8 @@
-<!-- https://stackoverflow.com/questions/72639233/why-does-my-vue-file-cause-a-ts6504-error-and-ask-me-if-i-meant-to-allowjs -->
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const message = ref('Hello world')
+</script>
 
 <template>
   <div>
@@ -8,7 +11,7 @@
     </header>
 
     <div>
-      <p>Hello world</p>
+      <p>{{ message }}</p>
     </div>
   </div>
 </template>

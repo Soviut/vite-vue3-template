@@ -1,5 +1,10 @@
+import { it, describe, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Btn from './Btn.vue'
+
+/**
+ * @vitest-environment jsdom
+ */
 
 describe('Btn component', () => {
   describe('default slot', () => {

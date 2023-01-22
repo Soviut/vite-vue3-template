@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 withDefaults(
   defineProps<{
+    disabled?: boolean
     open?: boolean
     sidebarClass?: string
     sidebarVisibleClass?: string
@@ -52,13 +53,15 @@ const closeMenu = () => {
     <aside
       class="fixed inset-y-0 w-64 -translate-x-full bg-black transition-transform duration-200 ease-in-out"
       :class="[
-        sidebarClass,
+        !disabled && sidebarClass,
         {
-          [sidebarVisibleClass]: visible,
-          [sidebarHiddenClass]: !visible,
+          [sidebarVisibleClass]: visible && !disabled,
+          [sidebarHiddenClass]: !visible && !disabled,
         },
+        disabled && '!hidden',
       ]"
     >
+      {{ disabled }}
       <button @click="closeMenu">close</button>
       <slot name="nav" />
     </aside>
@@ -66,10 +69,10 @@ const closeMenu = () => {
     <div
       class="grow transition-all duration-200 ease-in-out"
       :class="[
-        bodyClass,
+        !disabled && bodyClass,
         {
-          [bodyVisibleClass]: visible,
-          [bodyHiddenClass]: !visible,
+          [bodyVisibleClass]: visible && !disabled,
+          [bodyHiddenClass]: !visible && !disabled,
         },
       ]"
     >

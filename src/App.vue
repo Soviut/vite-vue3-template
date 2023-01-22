@@ -8,16 +8,19 @@ const store = useStore()
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
+
+// to remove the sidebar entirely, remove any expressions using this variable
+const sidebarEnabled = true
 </script>
 
 <template>
   <div>
-    <Sidebar v-slot="{ toggle }" sidebar-class="bg-red-500">
-      <header class="flex bg-gray-900">
-        <button class="p-5" @click="toggle">
-          <Bars3Icon class="h-6 w-6" />
-        </button>
-
+    <Sidebar
+      v-slot="{ toggle }"
+      sidebar-class="bg-red-500"
+      :disabled="!sidebarEnabled"
+    >
+      <header class="flex bg-gray-900" :class="{ 'lg:hidden': sidebarEnabled }">
         <router-link
           :to="{ name: 'home' }"
           class="p-5 text-2xl font-thin text-white hover:no-underline"
@@ -25,7 +28,7 @@ const toggleDark = useToggle(isDark)
           {{ $t('title') }}
         </router-link>
 
-        <nav class="flex">
+        <nav v-if="!sidebarEnabled" class="flex">
           <router-link
             :to="{ name: 'home' }"
             class="border-b-4 border-transparent p-5 hover:text-white hover:no-underline"
@@ -35,7 +38,7 @@ const toggleDark = useToggle(isDark)
           </router-link>
         </nav>
 
-        <nav class="ml-auto flex">
+        <nav v-if="!sidebarEnabled" class="ml-auto flex">
           <button
             class="py-4 px-5 text-primary-500 hover:text-white hover:no-underline"
             active-class="bg-gray-800 text-white"
@@ -65,6 +68,12 @@ const toggleDark = useToggle(isDark)
           >
             {{ $t('nav.logout') }}
           </router-link>
+        </nav>
+
+        <nav v-if="sidebarEnabled" class="ml-auto">
+          <button class="p-5" @click="toggle">
+            <Bars3Icon class="h-6 w-6" />
+          </button>
         </nav>
       </header>
 

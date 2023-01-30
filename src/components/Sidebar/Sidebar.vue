@@ -71,7 +71,7 @@ const close = () => {
 <template>
   <div class="flex">
     <aside
-      class="fixed inset-y-0 w-64 -translate-x-full transition-transform duration-200 ease-in-out"
+      class="fixed inset-y-0 w-64 -translate-x-full overflow-y-auto transition-transform duration-200 ease-in-out"
       :class="[
         !disabled && sidebarClass,
         visible && !disabled && sidebarVisibleClass,

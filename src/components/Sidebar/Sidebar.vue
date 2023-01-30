@@ -32,22 +32,6 @@ const emit = defineEmits<{
 
 const visible = ref(false)
 
-watch(
-  () => props.open,
-  (value) => {
-    visible.value = value
-
-    if (value) {
-      emit('open', value)
-    } else {
-      emit('close', value)
-    }
-
-    emit('change', visible.value)
-  },
-  { immediate: true }
-)
-
 const emitEvents = () => {
   emit('change', visible.value)
 
@@ -57,6 +41,16 @@ const emitEvents = () => {
     emit('close', visible.value)
   }
 }
+
+watch(
+  () => props.open,
+  (value) => {
+    visible.value = value
+
+    emitEvents()
+  },
+  { immediate: true }
+)
 
 const toggle = () => {
   visible.value = !visible.value

@@ -1,20 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { VueClassAttr } from '@@/types'
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
-    disabled?: boolean
     open?: boolean
-    sidebarClass?: string
-    sidebarVisibleClass?: string
-    sidebarHiddenClass?: string
-    bodyClass?: string
-    bodyVisibleClass?: string
-    bodyHiddenClass?: string
+    disabled?: boolean
+    sidebarClass?: VueClassAttr
+    sidebarVisibleClass?: VueClassAttr
+    sidebarHiddenClass?: VueClassAttr
+    bodyClass?: VueClassAttr
+    bodyVisibleClass?: VueClassAttr
+    bodyHiddenClass?: VueClassAttr
   }>(),
   {
     open: false,
-    sidebarClass: '',
+    sidebarClass: 'bg-black',
     sidebarVisibleClass: '!translate-x-0',
     sidebarHiddenClass: 'lg:translate-x-0',
     bodyClass: 'lg:pl-64',
@@ -24,64 +25,80 @@ withDefaults(
 )
 
 const emit = defineEmits<{
-  (e: 'open'): void
-  (e: 'close'): void
-  (e: 'toggle', value: boolean): void
+  (e: 'open', value: true): void
+  (e: 'close', value: false): void
+  (e: 'change', value: boolean): void
 }>()
 
 const visible = ref(false)
 
-const toggleMenu = () => {
+watch(
+  () => props.open,
+  (value) => {
+    visible.value = value
+
+    if (value) {
+      emit('open', value)
+    } else {
+      emit('close', value)
+    }
+
+    emit('change', visible.value)
+  },
+  { immediate: true }
+)
+
+const emitEvents = () => {
+  emit('change', visible.value)
+
+  if (visible.value) {
+    emit('open', visible.value)
+  } else {
+    emit('close', visible.value)
+  }
+}
+
+const toggle = () => {
   visible.value = !visible.value
-  console.log('visible', visible.value)
-  emit('toggle', visible.value)
+  emitEvents()
 }
 
-const openMenu = () => {
+const open = () => {
   visible.value = true
-  emit('open')
+  emitEvents()
 }
 
-const closeMenu = () => {
+const close = () => {
   visible.value = false
-  emit('close')
+  emitEvents()
 }
 </script>
 
 <template>
   <div class="flex">
     <aside
-      class="fixed inset-y-0 w-64 -translate-x-full bg-black transition-transform duration-200 ease-in-out"
+      class="fixed inset-y-0 w-64 -translate-x-full transition-transform duration-200 ease-in-out"
       :class="[
         !disabled && sidebarClass,
-        {
-          [sidebarVisibleClass]: visible && !disabled,
-          [sidebarHiddenClass]: !visible && !disabled,
-        },
+        visible && !disabled && sidebarVisibleClass,
+        !visible && !disabled && sidebarHiddenClass,
         disabled && '!hidden',
       ]"
     >
       {{ disabled }}
-      <button @click="closeMenu">close</button>
-      <slot name="nav" />
+      <button @click="close">close</button>
+      <slot name="aside" />
     </aside>
 
     <div
       class="grow transition-all duration-200 ease-in-out"
       :class="[
         !disabled && bodyClass,
-        {
-          [bodyVisibleClass]: visible && !disabled,
-          [bodyHiddenClass]: !visible && !disabled,
-        },
+        visible && !disabled && bodyVisibleClass,
+        !visible && !disabled && bodyHiddenClass,
       ]"
     >
-      <slot
-        :toggle="toggleMenu"
-        :open="openMenu"
-        :close="closeMenu"
-        :visible="visible"
-      />
+      <slot :toggle="toggle" :open="open" :close="close" :visible="visible" />
     </div>
   </div>
 </template>

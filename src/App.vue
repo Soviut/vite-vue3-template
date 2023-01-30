@@ -24,6 +24,13 @@ const sidebarEnabled = true
       <template #aside>
         <div class="flex h-full flex-col justify-between">
           <nav>
+            <router-link
+              :to="{ name: 'home' }"
+              class="block p-5 text-2xl font-thin text-white hover:no-underline"
+            >
+              {{ $t('title') }}
+            </router-link>
+
             <NavItem :to="{ name: 'home' }" :icon="RectangleGroupIcon"
               >Home</NavItem
             >
@@ -44,7 +51,7 @@ const sidebarEnabled = true
 
       <template #default="{ toggle }">
         <header
-          class="flex bg-gray-900"
+          class="flex border-b border-gray-800 bg-gray-900"
           :class="{ 'lg:hidden': sidebarEnabled }"
         >
           <router-link

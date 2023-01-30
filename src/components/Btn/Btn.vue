@@ -32,7 +32,7 @@ const isDisabled = computed(
         ? 'a'
         : 'button'
     "
-    class="inline-block rounded border text-center transition-colors duration-100 hover:no-underline focus:outline-none focus:ring-2 focus:ring-offset-2"
+    class="inline-block rounded border text-center transition-colors duration-100 hover:no-underline focus:outline-none focus:ring-2 focus:ring-offset-2 dark:ring-offset-gray-900"
     :class="{
       'px-2 py-1 text-sm': size === 'sm',
       'text-md px-3 py-2': size === 'md',

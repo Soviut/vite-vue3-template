@@ -10,9 +10,10 @@ defineProps<{
 <template>
   <router-link
     :to="to"
-    class="flex items-center p-5 hover:bg-white/5 hover:no-underline"
+    class="border-transparency flex items-center px-5 py-3 hover:bg-white/5 hover:no-underline"
+    active-class="!bg-primary-500 text-white"
   >
-    <component :is="icon" v-if="icon" />
+    <component :is="icon" v-if="icon" class="mr-3 h-6 w-6" />
 
     <slot />
   </router-link>

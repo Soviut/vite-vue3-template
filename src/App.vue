@@ -2,9 +2,10 @@
 import { useStore } from '@/store'
 import { useDark, useToggle } from '@vueuse/core'
 import {
-  SunIcon,
   Bars3Icon,
+  RectangleGroupIcon,
   MoonIcon,
+  SunIcon,
   UserCircleIcon,
 } from '@heroicons/vue/24/solid'
 import { NavItem, Sidebar } from '@/components'
@@ -21,8 +22,20 @@ const sidebarEnabled = true
   <div>
     <Sidebar sidebar-class="bg-gray-900" :disabled="!sidebarEnabled">
       <template #aside>
-        <NavItem to="/" :icon="MoonIcon">Home</NavItem>
-        <NavItem to="/login" :icon="UserCircleIcon">Account</NavItem>
+        <div class="flex h-full flex-col justify-between">
+          <nav>
+            <NavItem to="/" :icon="RectangleGroupIcon">Home</NavItem>
+          </nav>
+
+          <nav>
+            <NavItem
+              :icon="isDark ? SunIcon : MoonIcon"
+              @click="toggleDark()"
+              >{{ isDark ? 'Light' : 'Dark' }}</NavItem
+            >
+            <NavItem to="/login" :icon="UserCircleIcon">Account</NavItem>
+          </nav>
+        </div>
       </template>
 
       <template #default="{ toggle }">

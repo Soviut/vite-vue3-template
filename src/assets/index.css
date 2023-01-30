@@ -94,11 +94,14 @@
   select[multiple],
   textarea {
     @apply w-full
-      rounded border border-gray-300
-      px-3 py-2 text-gray-900
-      focus:border-gray-300 focus:outline-none focus:ring-2
-      focus:ring-primary-500/50
-      focus:ring-offset-2;
+      rounded
+      border border-gray-300 bg-white px-3
+      py-2 text-gray-900 focus:border-gray-300 focus:outline-none
+      focus:ring-2 focus:ring-primary-500/50 focus:ring-offset-2
+      dark:border-gray-500
+      dark:bg-gray-700
+      dark:text-white
+      dark:ring-offset-gray-900;
   }
 
   select {
@@ -109,19 +112,24 @@
   input[type='radio'] {
     @apply cursor-pointer
       rounded border border-gray-300
-      checked:border-transparent checked:bg-primary-500 hover:bg-gray-100 hover:checked:bg-primary-400
+      checked:border-transparent checked:bg-primary-500 hover:bg-gray-100 hover:checked:bg-primary-400 focus:border-gray-300
 
-      focus:border-gray-300
+      focus:ring-2
 
-      focus:ring-2 focus:ring-primary-500
-      focus:ring-opacity-50 focus:ring-offset-2
+      focus:ring-primary-500 focus:ring-opacity-50
+      focus:ring-offset-2 focus:checked:bg-primary-500
 
-      focus:checked:bg-primary-500
       focus:hover:checked:bg-primary-400
+      dark:border-gray-500
+
+      dark:bg-gray-700
+      dark:text-white
+
+      dark:ring-offset-gray-900
 
       dark:checked:border-transparent
       dark:checked:bg-primary-500
-
+      dark:hover:bg-gray-600
       dark:hover:checked:bg-primary-400;
   }
 

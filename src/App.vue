@@ -24,7 +24,9 @@ const sidebarEnabled = true
       <template #aside>
         <div class="flex h-full flex-col justify-between">
           <nav>
-            <NavItem to="/" :icon="RectangleGroupIcon">Home</NavItem>
+            <NavItem :to="{ name: 'home' }" :icon="RectangleGroupIcon"
+              >Home</NavItem
+            >
           </nav>
 
           <nav>
@@ -33,7 +35,9 @@ const sidebarEnabled = true
               @click="toggleDark()"
               >{{ isDark ? 'Light' : 'Dark' }}</NavItem
             >
-            <NavItem to="/login" :icon="UserCircleIcon">Account</NavItem>
+            <NavItem :to="{ name: 'login' }" :icon="UserCircleIcon"
+              >Account</NavItem
+            >
           </nav>
         </div>
       </template>

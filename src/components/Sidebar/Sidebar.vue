@@ -72,15 +72,25 @@ const close = () => {
 
 <template>
   <div class="flex">
-    <div
-      :class="[
-        'fixed inset-0 z-10',
-        backdropClass,
-        visible && !disabled && 'block lg:hidden',
-        !visible && !disabled && 'hidden',
-      ]"
-      @click="close"
-    />
+    <Transition
+      name="fade"
+      enter-active-class="transition-opacity duration-300"
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+      leave-active-class="transition-opacity duration-300"
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
+    >
+      <div
+        v-if="visible && !disabled"
+        :class="[
+          'fixed inset-0 z-10',
+          backdropClass,
+          visible && !disabled && 'block lg:hidden',
+        ]"
+        @click="close"
+      />
+    </Transition>
 
     <aside
       class="fixed inset-y-0 z-10 w-64 -translate-x-full overflow-y-auto border-gray-800 transition-transform duration-200 ease-in-out dark:border-r"

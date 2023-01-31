@@ -104,7 +104,7 @@ const sidebarEnabled = true
           </nav>
 
           <nav v-if="sidebarEnabled" class="ml-auto">
-            <button class="p-5" @click="toggle">
+            <button class="p-5 text-white" @click="toggle">
               <Bars3Icon class="h-6 w-6" />
             </button>
           </nav>

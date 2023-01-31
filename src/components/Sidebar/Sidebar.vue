@@ -12,6 +12,7 @@ const props = withDefaults(
     bodyClass?: VueClassAttr
     bodyVisibleClass?: VueClassAttr
     bodyHiddenClass?: VueClassAttr
+    backdropClass?: VueClassAttr
   }>(),
   {
     open: false,
@@ -21,6 +22,7 @@ const props = withDefaults(
     bodyClass: 'lg:pl-64',
     bodyVisibleClass: '',
     bodyHiddenClass: '',
+    backdropClass: 'bg-black/50',
   }
 )
 
@@ -70,8 +72,18 @@ const close = () => {
 
 <template>
   <div class="flex">
+    <div
+      :class="[
+        'fixed inset-0 z-10',
+        backdropClass,
+        visible && !disabled && 'block lg:hidden',
+        !visible && !disabled && 'hidden',
+      ]"
+      @click="close"
+    />
+
     <aside
-      class="fixed inset-y-0 w-64 -translate-x-full overflow-y-auto border-gray-800 transition-transform duration-200 ease-in-out dark:border-r"
+      class="fixed inset-y-0 z-10 w-64 -translate-x-full overflow-y-auto border-gray-800 transition-transform duration-200 ease-in-out dark:border-r"
       :class="[
         !disabled && sidebarClass,
         visible && !disabled && sidebarVisibleClass,

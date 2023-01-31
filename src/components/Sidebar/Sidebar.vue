@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { VueClassAttr } from '@@/types'
 
 const props = withDefaults(
@@ -31,6 +32,8 @@ const emit = defineEmits<{
   (e: 'close', value: false): void
   (e: 'change', value: boolean): void
 }>()
+
+const route = useRoute()
 
 const visible = ref(false)
 
@@ -68,6 +71,12 @@ const close = () => {
   visible.value = false
   emitEvents()
 }
+
+watch(
+  () => route.path,
+  () => close(),
+  { immediate: true }
+)
 </script>
 
 <template>

@@ -35,7 +35,7 @@ const emit = defineEmits<{
 
 const route = useRoute()
 
-const visible = ref(false)
+const visible = ref(props.open)
 
 const emitEvents = () => {
   emit('change', visible.value)

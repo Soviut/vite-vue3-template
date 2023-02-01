@@ -114,7 +114,7 @@ watch(
     </aside>
 
     <div
-      class="grow transition-all duration-200 ease-in-out"
+      class="grow"
       :class="[
         !disabled && bodyClass,
         visible && !disabled && bodyVisibleClass,

@@ -8,7 +8,7 @@ import {
   SunIcon,
   UserCircleIcon,
 } from '@heroicons/vue/24/solid'
-import { NavItem, Sidebar } from '@/components'
+import { Sidebar, SidebarItem } from '@/components'
 
 const store = useStore()
 
@@ -31,19 +31,19 @@ const sidebarEnabled = true
               {{ $t('title') }}
             </router-link>
 
-            <NavItem :to="{ name: 'home' }" :icon="RectangleGroupIcon"
-              >Home</NavItem
+            <SidebarItem :to="{ name: 'home' }" :icon="RectangleGroupIcon"
+              >Home</SidebarItem
             >
           </nav>
 
           <nav>
-            <NavItem
+            <SidebarItem
               :icon="isDark ? SunIcon : MoonIcon"
               @click="toggleDark()"
-              >{{ isDark ? 'Light' : 'Dark' }}</NavItem
+              >{{ isDark ? 'Light' : 'Dark' }}</SidebarItem
             >
-            <NavItem :to="{ name: 'login' }" :icon="UserCircleIcon"
-              >Account</NavItem
+            <SidebarItem :to="{ name: 'login' }" :icon="UserCircleIcon"
+              >Account</SidebarItem
             >
           </nav>
         </div>

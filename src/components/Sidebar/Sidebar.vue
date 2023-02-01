@@ -59,7 +59,7 @@ watch(
   { immediate: true }
 )
 
-const toggle = (value?: boolean) => {
+const toggle = (value?: boolean | Event) => {
   visible.value = typeof value === 'boolean' ? value : !visible.value
   emitEvents()
 }

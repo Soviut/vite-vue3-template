@@ -7,6 +7,7 @@ const props = withDefaults(
   defineProps<{
     open?: boolean
     disabled?: boolean
+    hideOnRouteChange?: boolean
     sidebarClass?: VueClassAttr
     sidebarVisibleClass?: VueClassAttr
     sidebarHiddenClass?: VueClassAttr
@@ -17,6 +18,7 @@ const props = withDefaults(
   }>(),
   {
     open: false,
+    hideOnRouteChange: true,
     sidebarClass: 'bg-black',
     sidebarVisibleClass: '!translate-x-0',
     sidebarHiddenClass: 'lg:translate-x-0',
@@ -74,8 +76,11 @@ const close = () => {
 
 watch(
   () => route.path,
-  () => close(),
-  { immediate: true }
+  () => {
+    if (props.hideOnRouteChange) {
+      close()
+    }
+  }
 )
 </script>
 

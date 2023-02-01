@@ -31,9 +31,9 @@ const sidebarEnabled = true
               {{ $t('title') }}
             </router-link>
 
-            <SidebarItem :to="{ name: 'home' }" :icon="RectangleGroupIcon"
-              >Home</SidebarItem
-            >
+            <SidebarItem :to="{ name: 'home' }" :icon="RectangleGroupIcon">{{
+              $t('nav.home')
+            }}</SidebarItem>
           </nav>
 
           <nav>
@@ -42,8 +42,12 @@ const sidebarEnabled = true
               @click="toggleDark()"
               >{{ isDark ? 'Light' : 'Dark' }}</SidebarItem
             >
-            <SidebarItem :to="{ name: 'login' }" :icon="UserCircleIcon"
-              >Account</SidebarItem
+            <SidebarItem
+              :to="{ name: !store.currentUser ? 'login' : 'logout' }"
+              :icon="UserCircleIcon"
+              >{{
+                !store.currentUser ? $t('nav.login') : $t('nav.logout')
+              }}</SidebarItem
             >
           </nav>
         </div>

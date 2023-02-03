@@ -117,10 +117,10 @@ watch(
 
       <button
         v-if="visible"
-        class="fixed top-0 right-0 z-10 bg-red-500"
+        class="fixed top-2 right-2 z-20 rounded-full bg-gray-500 p-3 hover:bg-gray-400 focus:bg-gray-400"
         @click="close"
       >
-        <XMarkIcon class="h-5 w-5 p-5 text-white" />
+        <XMarkIcon class="h-6 w-6 text-white" />
       </button>
 
       <aside

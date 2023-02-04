@@ -2,6 +2,7 @@
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
+import { onKeyStroke } from '@vueuse/core'
 import { XMarkIcon } from '@heroicons/vue/24/solid'
 import { VueClassAttr } from '@@/types'
 
@@ -76,6 +77,7 @@ const open = () => {
   emitEvents()
 }
 
+// TODO: guards to make sure events do not retrigger?
 const close = () => {
   visible.value = false
   deactivate()
@@ -90,6 +92,13 @@ watch(
     }
   }
 )
+
+onKeyStroke('Escape', (e) => {
+  if (visible.value) {
+    close()
+  }
+  e.preventDefault()
+})
 </script>
 
 <template>

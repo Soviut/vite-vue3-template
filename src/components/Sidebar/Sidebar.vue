@@ -72,13 +72,16 @@ const toggle = (value?: boolean | Event) => {
 }
 
 const open = () => {
+  if (visible.value) return
+
   visible.value = true
   activate()
   emitEvents()
 }
 
-// TODO: guards to make sure events do not retrigger?
 const close = () => {
+  if (!visible.value) return
+
   visible.value = false
   deactivate()
   emitEvents()

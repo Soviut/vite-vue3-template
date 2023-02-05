@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { nextTick, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { UseFocusTrap } from '@vueuse/integrations/useFocusTrap/component'
+import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 import {
   breakpointsTailwind,
   onKeyStroke,
@@ -67,18 +67,26 @@ watch(
   { immediate: true }
 )
 
-const open = () => {
+const focus = ref()
+const { activate, deactivate } = useFocusTrap(focus)
+
+const open = async () => {
   if (state.value === 'open' || state.value === 'pinned') return
 
   state.value = 'open'
   emitEvents()
+
+  await nextTick()
+  activate()
 }
 
-const close = () => {
+const close = async () => {
   if (state.value === 'closed') return
 
   state.value = 'closed'
   emitEvents()
+
+  deactivate()
 }
 
 const toggle = () => {
@@ -95,6 +103,7 @@ const pin = () => {
   if (state.value === 'pinned') return
 
   state.value = 'pinned'
+  deactivate()
   emitEvents()
 }
 
@@ -138,7 +147,7 @@ watch(
 
 <template>
   <div class="flex">
-    <UseFocusTrap v-if="state === 'open'" :options="{ immediate: true }">
+    <div ref="focus">
       <Transition
         name="fade"
         enter-active-class="transition-opacity duration-300"
@@ -198,7 +207,7 @@ watch(
           />
         </aside>
       </Transition>
-    </UseFocusTrap>
+    </div>
 
     <div class="grow" :class="[bodyClass, state === 'pinned' && 'pl-64']">
       <slot :toggle="toggle" :open="open" :close="close" :state="state" />

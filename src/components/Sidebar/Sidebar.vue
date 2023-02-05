@@ -135,7 +135,7 @@ watch(visible, (value) => {
 
       <button
         v-if="visible"
-        class="fixed top-2 right-2 z-20 rounded-full bg-gray-500 p-3 hover:bg-gray-400 focus:bg-gray-400"
+        class="fixed top-2 right-2 z-20 block rounded-full bg-gray-500 p-3 hover:bg-gray-400 focus:bg-gray-400 lg:hidden"
         @click="close"
       >
         <XMarkIcon class="h-6 w-6 text-white" />

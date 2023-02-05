@@ -14,13 +14,11 @@ const store = useStore()
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
-
-const sidebarEnabled = true
 </script>
 
 <template>
   <div>
-    <Sidebar sidebar-class="bg-gray-900" :disabled="!sidebarEnabled">
+    <Sidebar sidebar-class="bg-gray-900">
       <template #aside>
         <div class="flex h-full flex-col justify-between">
           <nav>
@@ -53,10 +51,10 @@ const sidebarEnabled = true
         </div>
       </template>
 
-      <template #default="{ toggle }">
+      <template #default="{ state, toggle }">
         <header
+          v-if="state !== 'pinned'"
           class="flex border-b border-gray-800 bg-gray-900"
-          :class="{ 'lg:hidden': sidebarEnabled }"
         >
           <router-link
             :to="{ name: 'home' }"
@@ -65,7 +63,8 @@ const sidebarEnabled = true
             {{ $t('title') }}
           </router-link>
 
-          <nav v-if="!sidebarEnabled" class="flex">
+          <!-- uncomment if not using sidebar -->
+          <!-- <nav class="flex">
             <router-link
               :to="{ name: 'home' }"
               class="border-b-4 border-transparent p-5 hover:text-white hover:no-underline"
@@ -75,7 +74,7 @@ const sidebarEnabled = true
             </router-link>
           </nav>
 
-          <nav v-if="!sidebarEnabled" class="ml-auto flex">
+          <nav class="ml-auto flex">
             <button
               class="py-4 px-5 text-primary-500 hover:text-white hover:no-underline"
               active-class="bg-gray-800 text-white"
@@ -105,9 +104,9 @@ const sidebarEnabled = true
             >
               {{ $t('nav.logout') }}
             </router-link>
-          </nav>
+          </nav> -->
 
-          <nav v-if="sidebarEnabled" class="ml-auto">
+          <nav class="ml-auto">
             <button class="p-5 text-white" @click="toggle">
               <Bars3Icon class="h-6 w-6" />
             </button>

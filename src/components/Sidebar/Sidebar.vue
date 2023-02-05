@@ -2,60 +2,65 @@
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
-import { onKeyStroke, useScrollLock } from '@vueuse/core'
+import {
+  breakpointsTailwind,
+  onKeyStroke,
+  useBreakpoints,
+  useScrollLock,
+} from '@vueuse/core'
 import { XMarkIcon } from '@heroicons/vue/24/solid'
 import { VueClassAttr } from '@@/types'
 
+type SidebarState = 'open' | 'closed' | 'pinned'
+
 const props = withDefaults(
   defineProps<{
-    open?: boolean
-    disabled?: boolean
-    hideOnRouteChange?: boolean
+    state?: SidebarState
+    breakpoint?: keyof typeof breakpointsTailwind
+    closeOnRouteChange?: boolean
     sidebarClass?: VueClassAttr
-    sidebarVisibleClass?: VueClassAttr
-    sidebarHiddenClass?: VueClassAttr
     bodyClass?: VueClassAttr
-    bodyVisibleClass?: VueClassAttr
-    bodyHiddenClass?: VueClassAttr
     backdropClass?: VueClassAttr
+    closeClass?: VueClassAttr
   }>(),
   {
-    open: false,
-    hideOnRouteChange: true,
+    state: 'closed',
+    closeOnRouteChange: true,
+    breakpoint: 'lg',
     sidebarClass: 'bg-black',
-    sidebarVisibleClass: '!translate-x-0',
-    sidebarHiddenClass: 'lg:translate-x-0',
-    bodyClass: 'lg:pl-64',
-    bodyVisibleClass: '',
-    bodyHiddenClass: '',
+    bodyClass: '',
     backdropClass: 'bg-black/50',
+    closeClass: '',
   }
 )
 
 const emit = defineEmits<{
-  (e: 'open', value: true): void
-  (e: 'close', value: false): void
-  (e: 'change', value: boolean): void
+  (e: 'open', value: SidebarState): void
+  (e: 'close', value: SidebarState): void
+  (e: 'pin', value: SidebarState): void
+  (e: 'change', value: SidebarState): void
 }>()
 
 const route = useRoute()
 
-const visible = ref(props.open)
+const state = ref<SidebarState>(props.state)
 
 const emitEvents = () => {
-  emit('change', visible.value)
+  emit('change', state.value)
 
-  if (visible.value) {
-    emit('open', visible.value)
+  if (state.value === 'open') {
+    emit('open', state.value)
+  } else if (state.value === 'pinned') {
+    emit('pin', state.value)
   } else {
-    emit('close', visible.value)
+    emit('close', state.value)
   }
 }
 
 watch(
-  () => props.open,
+  () => props.state,
   (value) => {
-    visible.value = value
+    state.value = value
 
     emitEvents()
   },
@@ -65,24 +70,36 @@ watch(
 const wrapper = ref()
 const { activate, deactivate } = useFocusTrap(wrapper)
 
-const toggle = (value?: boolean | Event) => {
-  visible.value = typeof value === 'boolean' ? value : !visible.value
-  visible.value ? activate() : deactivate()
-  emitEvents()
-}
-
 const open = () => {
-  if (visible.value) return
+  if (state.value === 'open' || state.value === 'pinned') return
 
-  visible.value = true
+  state.value = 'open'
   activate()
   emitEvents()
 }
 
 const close = () => {
-  if (!visible.value) return
+  if (state.value === 'closed') return
 
-  visible.value = false
+  state.value = 'closed'
+  deactivate()
+  emitEvents()
+}
+
+const toggle = () => {
+  if (state.value === 'pinned') return
+
+  if (state.value === 'open') {
+    close()
+  } else {
+    open()
+  }
+}
+
+const pin = () => {
+  if (state.value === 'pinned') return
+
+  state.value = 'pinned'
   deactivate()
   emitEvents()
 }
@@ -90,14 +107,14 @@ const close = () => {
 watch(
   () => route.path,
   () => {
-    if (props.hideOnRouteChange) {
+    if (props.closeOnRouteChange) {
       close()
     }
   }
 )
 
 onKeyStroke('Escape', (e) => {
-  if (visible.value) {
+  if (state.value === 'open') {
     close()
   }
   e.preventDefault()
@@ -105,13 +122,29 @@ onKeyStroke('Escape', (e) => {
 
 const isLocked = useScrollLock(document.body)
 
-watch(visible, (value) => {
-  isLocked.value = value
+watch(state, (value) => {
+  isLocked.value = value === 'open'
+})
+
+const breakpoints = useBreakpoints(breakpointsTailwind)
+const pastBreakpoint = breakpoints.greaterOrEqual(props.breakpoint)
+
+watch(pastBreakpoint, (value) => {
+  if (value) {
+    pin()
+  } else {
+    close()
+  }
 })
 </script>
 
 <template>
   <div class="flex">
+    <!-- TODO: debug only -->
+    <div class="fixed top-0 left-0 z-20">
+      {{ state }} | breakpoint: {{ pastBreakpoint }}
+    </div>
+
     <div ref="wrapper">
       <Transition
         name="fade"
@@ -123,52 +156,49 @@ watch(visible, (value) => {
         leave-to-class="opacity-0"
       >
         <div
-          v-if="visible && !disabled"
-          :class="[
-            'fixed inset-0 z-10',
-            backdropClass,
-            visible && !disabled && 'block lg:hidden',
-          ]"
+          v-if="state === 'open'"
+          class="fixed inset-0 z-10"
+          :class="backdropClass"
           @click="close"
         />
       </Transition>
 
       <button
-        v-if="visible"
-        class="fixed top-2 right-2 z-20 block rounded-full bg-gray-500 p-3 hover:bg-gray-400 focus:bg-gray-400 lg:hidden"
+        v-if="state === 'open'"
+        class="fixed top-2 right-2 z-20 block rounded-full bg-gray-500 p-3 hover:bg-gray-400 focus:bg-gray-400"
+        :class="closeClass"
         @click="close"
       >
         <XMarkIcon class="h-6 w-6 text-white" />
       </button>
 
-      <aside
-        class="fixed inset-y-0 z-10 w-64 -translate-x-full overflow-y-auto border-gray-800 transition-transform duration-200 ease-in-out dark:border-r"
-        :class="[
-          !disabled && sidebarClass,
-          visible && !disabled && sidebarVisibleClass,
-          !visible && !disabled && sidebarHiddenClass,
-          disabled && '!hidden',
-        ]"
+      <Transition
+        name="fade"
+        enter-active-class="transition-transform duration-300"
+        enter-from-class="-translate-x-full"
+        enter-to-class="translate-x-0"
+        leave-active-class="transition-transform duration-300"
+        leave-from-class="translate-x-0"
+        leave-to-class="-translate-x-full"
       >
-        <slot
-          name="aside"
-          :toggle="toggle"
-          :open="open"
-          :close="close"
-          :visible="visible"
-        />
-      </aside>
+        <aside
+          v-if="state === 'open' || state === 'pinned'"
+          class="fixed inset-y-0 z-10 w-64 overflow-y-auto border-gray-800 transition-transform duration-200 ease-in-out dark:border-r"
+          :class="sidebarClass"
+        >
+          <slot
+            name="aside"
+            :toggle="toggle"
+            :open="open"
+            :close="close"
+            :state="state"
+          />
+        </aside>
+      </Transition>
     </div>
 
-    <div
-      class="grow"
-      :class="[
-        !disabled && bodyClass,
-        visible && !disabled && bodyVisibleClass,
-        !visible && !disabled && bodyHiddenClass,
-      ]"
-    >
-      <slot :toggle="toggle" :open="open" :close="close" :visible="visible" />
+    <div class="grow" :class="[bodyClass, state === 'pinned' && 'pl-64']">
+      <slot :toggle="toggle" :open="open" :close="close" :state="state" />
     </div>
   </div>
 </template>

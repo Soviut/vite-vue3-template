@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, ref, watch } from 'vue'
+import { nextTick, onUnmounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 import {
@@ -57,22 +57,12 @@ const emitEvents = () => {
   }
 }
 
-watch(
-  () => props.state,
-  (value) => {
-    if (value === 'open') {
-      open()
-    } else if (value === 'pinned') {
-      pin()
-    } else {
-      close()
-    }
-  },
-  { immediate: true }
-)
-
 const focus = ref()
 const { activate, deactivate } = useFocusTrap(focus)
+
+onUnmounted(() => {
+  deactivate()
+})
 
 const open = async () => {
   if (state.value === 'open' || state.value === 'pinned') return
@@ -107,9 +97,24 @@ const pin = () => {
   if (state.value === 'pinned') return
 
   state.value = 'pinned'
-  deactivate()
   emitEvents()
+
+  deactivate()
 }
+
+watch(
+  () => props.state,
+  (value) => {
+    if (value === 'open') {
+      open()
+    } else if (value === 'pinned') {
+      pin()
+    } else {
+      close()
+    }
+  },
+  { immediate: true }
+)
 
 watch(
   () => route.path,

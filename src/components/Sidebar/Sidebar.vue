@@ -60,9 +60,13 @@ const emitEvents = () => {
 watch(
   () => props.state,
   (value) => {
-    state.value = value
-
-    emitEvents()
+    if (value === 'open') {
+      open()
+    } else if (value === 'pinned') {
+      pin()
+    } else {
+      close()
+    }
   },
   { immediate: true }
 )

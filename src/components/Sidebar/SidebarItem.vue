@@ -22,6 +22,7 @@ defineProps<{
     "
     class="flex w-full items-center px-5 py-3 text-white hover:bg-white/5 hover:no-underline"
     active-class="!bg-primary-500"
+    :disabled="disabled"
   >
     <component :is="icon" v-if="icon" class="mr-3 h-5 w-5" :class="iconClass" />
 

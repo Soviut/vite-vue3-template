@@ -15,16 +15,16 @@ type SidebarState = 'open' | 'closed' | 'pinned'
 
 const props = withDefaults(
   defineProps<{
-    state?: SidebarState
-    breakpoint?: keyof typeof breakpointsTailwind
+    open?: boolean
     closeOnRouteChange?: boolean
+    breakpoint?: keyof typeof breakpointsTailwind
     sidebarClass?: VueClassAttr
     bodyClass?: VueClassAttr
     backdropClass?: VueClassAttr
     closeClass?: VueClassAttr
   }>(),
   {
-    state: 'closed',
+    open: false,
     closeOnRouteChange: true,
     breakpoint: 'lg',
     sidebarClass: 'bg-black',
@@ -43,7 +43,7 @@ const emit = defineEmits<{
 
 const route = useRoute()
 
-const state = ref<SidebarState>(props.state)
+const state = ref<SidebarState>(props.open ? 'open' : 'closed')
 
 const emitEvents = () => {
   emit('change', state.value)

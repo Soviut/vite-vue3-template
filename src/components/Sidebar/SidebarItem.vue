@@ -20,7 +20,7 @@ defineProps<{
         ? 'a'
         : 'button'
     "
-    class="flex w-full items-center px-5 py-3 text-white hover:bg-white/5 hover:no-underline"
+    class="flex w-full items-center px-5 py-3 text-white hover:bg-white/5 hover:no-underline focus:bg-white/5 focus:no-underline focus:outline-none"
     active-class="!bg-primary-500"
     :disabled="disabled"
   >

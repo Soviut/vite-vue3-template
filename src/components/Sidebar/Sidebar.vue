@@ -144,11 +144,6 @@ watch(
 
 <template>
   <div class="flex">
-    <!-- TODO: debug only -->
-    <div class="fixed top-0 left-0 z-20">
-      {{ state }} | breakpoint: {{ pastBreakpoint }}
-    </div>
-
     <div ref="wrapper">
       <Transition
         name="fade"
@@ -167,17 +162,27 @@ watch(
         />
       </Transition>
 
-      <button
-        v-if="state === 'open'"
-        class="fixed top-2 right-2 z-20 block rounded-full bg-gray-500 p-3 hover:bg-gray-400 focus:bg-gray-400"
-        :class="closeClass"
-        @click="close"
+      <Transition
+        name="bump"
+        enter-active-class="transition-all duration-300"
+        enter-from-class="opacity-0 scale-50"
+        enter-to-class="opacity-100 scale-100"
+        leave-active-class="transition-all duration-300"
+        leave-from-class="opacity-100 scale-100"
+        leave-to-class="opacity-0 scale-50"
       >
-        <XMarkIcon class="h-6 w-6 text-white" />
-      </button>
+        <button
+          v-if="state === 'open'"
+          class="fixed top-2 right-2 z-20 block rounded-full bg-gray-500 p-3 hover:bg-gray-400 focus:bg-gray-400"
+          :class="closeClass"
+          @click="close"
+        >
+          <XMarkIcon class="h-6 w-6 text-white" />
+        </button>
+      </Transition>
 
       <Transition
-        name="fade"
+        name="slide"
         enter-active-class="transition-transform duration-300"
         enter-from-class="-translate-x-full"
         enter-to-class="translate-x-0"

@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
-import { onKeyStroke } from '@vueuse/core'
+import { onKeyStroke, useScrollLock } from '@vueuse/core'
 import { XMarkIcon } from '@heroicons/vue/24/solid'
 import { VueClassAttr } from '@@/types'
 
@@ -101,6 +101,12 @@ onKeyStroke('Escape', (e) => {
     close()
   }
   e.preventDefault()
+})
+
+const isLocked = useScrollLock(document.body)
+
+watch(visible, (value) => {
+  isLocked.value = value
 })
 </script>
 

@@ -107,7 +107,7 @@ const pin = () => {
 watch(
   () => route.path,
   () => {
-    if (props.closeOnRouteChange) {
+    if (state.value === 'open' && props.closeOnRouteChange) {
       close()
     }
   }
@@ -120,22 +120,26 @@ onKeyStroke('Escape', (e) => {
   e.preventDefault()
 })
 
-const isLocked = useScrollLock(document.body)
+const scrollLock = useScrollLock(document.body)
 
 watch(state, (value) => {
-  isLocked.value = value === 'open'
+  scrollLock.value = value === 'open'
 })
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const pastBreakpoint = breakpoints.greaterOrEqual(props.breakpoint)
 
-watch(pastBreakpoint, (value) => {
-  if (value) {
-    pin()
-  } else {
-    close()
-  }
-})
+watch(
+  pastBreakpoint,
+  (value) => {
+    if (value) {
+      pin()
+    } else {
+      close()
+    }
+  },
+  { immediate: true }
+)
 </script>
 
 <template>

@@ -103,12 +103,10 @@ const pin = () => {
 }
 
 watch(
-  () => props.state,
+  () => props.open,
   (value) => {
-    if (value === 'open') {
+    if (value) {
       open()
-    } else if (value === 'pinned') {
-      pin()
     } else {
       close()
     }

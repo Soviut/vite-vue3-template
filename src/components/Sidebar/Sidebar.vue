@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
+import { UseFocusTrap } from '@vueuse/integrations/useFocusTrap/component'
 import {
   breakpointsTailwind,
   onKeyStroke,
@@ -67,14 +67,10 @@ watch(
   { immediate: true }
 )
 
-const wrapper = ref()
-const { activate, deactivate } = useFocusTrap(wrapper)
-
 const open = () => {
   if (state.value === 'open' || state.value === 'pinned') return
 
   state.value = 'open'
-  activate()
   emitEvents()
 }
 
@@ -82,7 +78,6 @@ const close = () => {
   if (state.value === 'closed') return
 
   state.value = 'closed'
-  deactivate()
   emitEvents()
 }
 
@@ -100,7 +95,6 @@ const pin = () => {
   if (state.value === 'pinned') return
 
   state.value = 'pinned'
-  deactivate()
   emitEvents()
 }
 
@@ -144,7 +138,7 @@ watch(
 
 <template>
   <div class="flex">
-    <div ref="wrapper">
+    <UseFocusTrap v-if="state === 'open'" :options="{ immediate: true }">
       <Transition
         name="fade"
         enter-active-class="transition-opacity duration-300"
@@ -204,7 +198,7 @@ watch(
           />
         </aside>
       </Transition>
-    </div>
+    </UseFocusTrap>
 
     <div class="grow" :class="[bodyClass, state === 'pinned' && 'pl-64']">
       <slot :toggle="toggle" :open="open" :close="close" :state="state" />

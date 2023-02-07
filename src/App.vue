@@ -24,7 +24,7 @@ const toggleDark = useToggle(isDark)
           <nav>
             <router-link
               :to="{ name: 'home' }"
-              class="block border-b border-gray-800 p-5 text-2xl font-thin text-white hover:no-underline"
+              class="block border-b border-gray-800 p-5 text-2xl font-thin text-white hover:bg-white/5 hover:no-underline focus:bg-white/5 focus:outline-none"
             >
               {{ $t('title') }}
             </router-link>

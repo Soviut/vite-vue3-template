@@ -24,7 +24,12 @@ defineProps<{
     active-class="!bg-primary-500"
     :disabled="disabled"
   >
-    <component :is="icon" v-if="icon" class="mr-3 h-5 w-5" :class="iconClass" />
+    <component
+      :is="icon"
+      v-if="icon"
+      class="mr-3 h-5 w-5 flex-shrink-0"
+      :class="iconClass"
+    />
 
     <slot />
   </component>

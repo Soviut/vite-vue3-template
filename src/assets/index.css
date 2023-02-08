@@ -53,7 +53,7 @@
   /* Works on Firefox */
   * {
     scrollbar-width: thin;
-    scrollbar-color: blue orange;
+    scrollbar-color: rgb(20 184 166) rgb(212 212 212);
   }
 
   /* Works on Chrome, Edge, and Safari */

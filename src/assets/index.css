@@ -51,21 +51,21 @@
 
 @layer base {
   /* Works on Firefox */
-  * {
+  html:not(.feat-hidden-scrollbar) * {
     scrollbar-width: thin;
     scrollbar-color: rgb(20 184 166) rgb(212 212 212);
   }
 
   /* Works on Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
+  html:not(.feat-hidden-scrollbar) *::-webkit-scrollbar {
     @apply h-2 w-2;
   }
 
-  *::-webkit-scrollbar-track {
+  html:not(.feat-hidden-scrollbar) *::-webkit-scrollbar-track {
     @apply bg-secondary-300;
   }
 
-  *::-webkit-scrollbar-thumb {
+  html:not(.feat-hidden-scrollbar) *::-webkit-scrollbar-thumb {
     @apply bg-primary-500;
   }
 }

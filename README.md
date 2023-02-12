@@ -63,9 +63,18 @@ npm run format
 
 ## Recommended IDE Setup
 
-- [VSCode](https://code.visualstudio.com/)
+[Visual Studio Code](https://code.visualstudio.com/) is the recommended IDE.
+
+When opening the project in VSCode, popups to install the following recommended
+extensions should appear. These are defined in the `.vscode/extensions.json`.
+
 - [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 - [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin)
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [ESLint](dbaeumer.vscode-eslint)
+
+Additionally, key workspace settings are included in the `.vscode/settings.json`
+such as "Format on Save".
 
 ## Pre-Commit
 

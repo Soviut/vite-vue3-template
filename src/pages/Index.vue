@@ -5,6 +5,10 @@ const message = ref('Hello world')
 </script>
 
 <template>
+  <UseHead>
+    <title>{{ $t('pages.home.title') }}</title>
+  </UseHead>
+
   <div>
     <header class="mb-8">
       <h1>{{ $t('pages.home.title') }}</h1>

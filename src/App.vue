@@ -8,7 +8,7 @@ import {
   SunIcon,
   UserCircleIcon,
 } from '@heroicons/vue/24/solid'
-import { Sidebar, SidebarItem } from '@/components'
+import { Logo, Sidebar, SidebarItem } from '@/components'
 
 const store = useStore()
 
@@ -26,7 +26,7 @@ const toggleDark = useToggle(isDark)
               :to="{ name: 'home' }"
               class="block border-b border-gray-800 p-5 text-2xl font-thin text-white hover:bg-white/5 hover:no-underline focus:bg-white/5 focus:outline-none"
             >
-              {{ $t('title') }}
+              <Logo />
             </router-link>
 
             <SidebarItem :to="{ name: 'home' }" :icon="RectangleGroupIcon">{{
@@ -60,7 +60,7 @@ const toggleDark = useToggle(isDark)
             :to="{ name: 'home' }"
             class="p-5 text-2xl font-thin text-white hover:no-underline"
           >
-            {{ $t('title') }}
+            <Logo />
           </router-link>
 
           <!-- uncomment if not using sidebar -->

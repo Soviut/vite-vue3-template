@@ -5,6 +5,7 @@ import Index from '@/pages/Index.vue'
 
 import Login from '@/pages/Login.vue'
 import Logout from '@/pages/Logout.vue'
+import NotFound from '@/pages/404.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -24,6 +25,13 @@ const router = createRouter({
       path: '/logout',
       component: Logout,
       name: 'logout',
+    },
+
+    // catch all 404
+    {
+      path: '/:pathMatch(.*)*',
+      component: NotFound,
+      name: '404',
     },
   ],
 })

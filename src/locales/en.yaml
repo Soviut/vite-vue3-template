@@ -55,3 +55,6 @@ pages:
   logout:
     title: Sign Out
     confirm: Are you sure you want to sign out?
+  notFound:
+    title: Page Not Found
+    message: The page you are looking for does not exist.

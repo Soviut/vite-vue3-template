@@ -24,7 +24,7 @@
     "@vueuse/integrations": "^9.13.0",
     "focus-trap": "^7.4.1",
     "pinia": "^2.0.36",
-    "vue": "^3.2.25",
+    "vue": "^3.3.2",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.2.0"
   },

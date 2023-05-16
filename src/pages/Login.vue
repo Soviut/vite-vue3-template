@@ -27,6 +27,10 @@ const login = async () => {
 </script>
 
 <template>
+  <UseHead>
+    <title>{{ $t('pages.login.title') }}</title>
+  </UseHead>
+
   <PromptPanel>
     <template #header>
       <h1>{{ $t('pages.login.title') }}</h1>

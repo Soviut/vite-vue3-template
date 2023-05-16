@@ -13,6 +13,10 @@ const logout = async () => {
 </script>
 
 <template>
+  <UseHead>
+    <title>{{ $t('pages.logout.title') }}</title>
+  </UseHead>
+
   <PromptPanel>
     <template #header>
       <h1>{{ $t('pages.logout.title') }}</h1>

@@ -7,12 +7,14 @@ const props = withDefaults(
     url?: string
     name: string
     bgClass?: VueClassAttr
+    imageClass?: VueClassAttr
     initialsClass?: VueClassAttr
   }>(),
   {
     url: '',
     name: '',
     bgClass: 'bg-gray-400',
+    imageClass: '',
     initialsClass: 'text-white',
   }
 )
@@ -28,10 +30,19 @@ const initials = computed(() => {
 
 <template>
   <div
-    class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full"
+    class="flex aspect-square h-full w-full max-w-[2.5rem] items-center justify-center overflow-hidden rounded-full"
     :class="bgClass"
   >
-    <img v-if="url" :src="url" :alt="name" referrerpolicy="no-referrer" />
-    <div v-else :class="initialsClass">{{ initials }}</div>
+    <img
+      v-if="url"
+      :src="url"
+      :alt="name"
+      referrerpolicy="no-referrer"
+      class="h-full w-full object-cover"
+      :class="imageClass"
+    />
+    <div v-else class="uppercase" :class="initialsClass">
+      {{ initials }}
+    </div>
   </div>
 </template>

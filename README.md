@@ -100,14 +100,14 @@ seconds to complete.
 
 Once you have installed the template, you should do the following
 
-[ ] update name in package.json
-[ ] update title in index.html
-[ ] update meta tags in index.html
-[ ] test og meta tags in https://developers.facebook.com/tools/debug/
-[ ] update createHead title in main.ts
-[ ] update title in en.yaml
-[ ] remove commented out sidebar code in App.vue
-[ ] update favicon
-[ ] update project description at top of README
-[ ] remove Project Setup section from README
-[ ] remove this Post-Install Checklist section from README
+- [ ] update name in package.json
+- [ ] update title in index.html
+- [ ] update meta tags in index.html
+- [ ] test og meta tags in https://developers.facebook.com/tools/debug/
+- [ ] update createHead title in main.ts
+- [ ] update title in en.yaml
+- [ ] remove commented out sidebar code in App.vue
+- [ ] update favicon
+- [ ] update project description at top of README
+- [ ] remove Project Setup section from README
+- [ ] remove this Post-Install Checklist section from README

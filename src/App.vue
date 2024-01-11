@@ -32,6 +32,10 @@ const toggleDark = useToggle(isDark)
             <SidebarItem :to="{ name: 'home' }" :icon="RectangleGroupIcon">{{
               $t('nav.home')
             }}</SidebarItem>
+
+            <SidebarItem :to="{ name: 'items' }" :icon="RectangleGroupIcon">{{
+              $t('nav.items')
+            }}</SidebarItem>
           </nav>
 
           <nav>

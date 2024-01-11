@@ -5,6 +5,8 @@ import router from '@/router'
 import { createPinia } from 'pinia'
 import { Head, createHead } from '@vueuse/head'
 import detectHiddenScrollbar from '@/plugins/detectHiddenScrollbar'
+import { createToaster } from '@/plugins/toaster'
+import { PageHeader } from '@/components'
 import '@/assets/index.css'
 
 const app = createApp(App)
@@ -18,7 +20,9 @@ app.use(
   })
 )
 app.use(detectHiddenScrollbar)
+app.use(createToaster(), { variant: 'primary' })
 
 app.component('UseHead', Head)
+app.component('PageHeader', PageHeader)
 
 app.mount('#app')

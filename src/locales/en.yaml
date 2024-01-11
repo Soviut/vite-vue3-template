@@ -5,13 +5,15 @@ title: Template
 # top level site navigation
 nav:
   home: Home
+  items: Items
   login: Sign In
   logout: Sign Out
 
 # used in combination with "<action>Model" keys
 # intended to dry up "create item", "create other", etc.
 models:
-  item: Item
+  item: item
+  items: items
 
 # used for buttons and menu items
 # note that "<action>Model" keys should be used with models keys
@@ -19,6 +21,7 @@ actions:
   login: Sign In
   logout: Sign Out
   create: Create
+  view: View
   edit: Edit
   delete: Delete
   update: Update
@@ -28,7 +31,7 @@ actions:
 
 # used for prompts and alerts
 messages:
-  noItems: There are currently no items
+  noModel: There are currently no {model}
 
 # form labels should have no suffix (eg: "email")
 # placeholders should have "<field>Placeholder" suffix
@@ -49,6 +52,11 @@ components: []
 pages:
   home:
     title: Home
+
+  items:
+    title: Items
+  itemsCreate:
+    title: Create Item
 
   login:
     title: Sign In

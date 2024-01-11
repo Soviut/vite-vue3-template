@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
+import { onKeyStroke } from '@vueuse/core'
 import {
   Dialog,
   DialogPanel,
@@ -7,14 +8,18 @@ import {
   TransitionRoot,
   TransitionChild,
 } from '@headlessui/vue'
+import { XMarkIcon } from '@heroicons/vue/24/solid'
 import { Btn } from '@/components'
 
 const props = defineProps<{
   open: boolean
   title: string
   noAutoClose?: boolean
-  noCancel?: boolean
-  noConfirm?: boolean
+  cancelable?: boolean
+  cancelText?: string
+  confirmable?: boolean
+  confirmText?: string
+  closeable?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -38,73 +43,106 @@ const setIsOpen = (value: boolean) => {
   isOpen.value = value
 }
 
-const close = () => {
+const closeModal = () => {
   setIsOpen(false)
   emit('close')
   emit('toggle', false)
 }
 
-const confirm = () => {
+const confirmAction = () => {
   emit('confirm')
-  if (!props.noAutoClose) close()
+  if (!props.noAutoClose) closeModal()
 }
 
-const cancel = () => {
+const cancelAction = () => {
   emit('cancel')
-  close()
+  closeModal()
 }
+
+onKeyStroke('Escape', (e) => {
+  e.preventDefault()
+  closeModal()
+})
+
+// avoids errors when modals are loaded before their teleport target
+const isMounted = ref(false)
+onMounted(() => {
+  isMounted.value = true
+})
 </script>
 
 <template>
-  <TransitionRoot :show="isOpen" as="template">
-    <Dialog class="relative z-50" @close="close">
-      <TransitionChild
-        enter="duration-200 ease-out"
-        enter-from="opacity-0"
-        enter-to="opacity-100"
-        leave="duration-200 ease-in"
-        leave-from="opacity-100"
-        leave-to="opacity-0"
-      >
-        <div
-          class="fixed inset-0 bg-gray-900/80"
-          aria-hidden="true"
-          @click="close"
-        />
-      </TransitionChild>
-
-      <div class="fixed inset-0 flex items-center justify-center p-5">
+  <Teleport v-if="isMounted" to="#modals">
+    <TransitionRoot :show="isOpen" as="template">
+      <Dialog class="relative z-50" @close="closeModal">
         <TransitionChild
-          as="template"
           enter="duration-200 ease-out"
-          enter-from="opacity-0 translate-y-5"
-          enter-to="opacity-100 translate-y-0"
+          enter-from="opacity-0"
+          enter-to="opacity-100"
           leave="duration-200 ease-in"
-          leave-from="opacity-100 translate-y-0"
-          leave-to="opacity-0 translate-y-5"
+          leave-from="opacity-100"
+          leave-to="opacity-0"
         >
-          <DialogPanel
-            class="w-full max-w-sm rounded-xl bg-gray-800 shadow-lg shadow-black/20"
-          >
-            <header class="px-5 py-3 pt-5">
-              <DialogTitle class="text-base font-semibold">{{
-                title
-              }}</DialogTitle>
-            </header>
-
-            <div class="px-5">
-              <slot />
-            </div>
-
-            <footer class="space-x-2 p-5 text-right">
-              <Btn v-if="!noCancel" outline @click="cancel">Cancel</Btn>
-              <Btn v-if="!noConfirm" variant="primary" @click="confirm"
-                >Confirm</Btn
-              >
-            </footer>
-          </DialogPanel>
+          <div
+            class="fixed inset-0 bg-gray-900/80"
+            aria-hidden="true"
+            @click="closeModal"
+          />
         </TransitionChild>
-      </div>
-    </Dialog>
-  </TransitionRoot>
+
+        <div class="fixed inset-0 flex overflow-auto">
+          <TransitionChild
+            as="template"
+            enter="duration-200 ease-out"
+            enter-from="opacity-0 translate-y-5"
+            enter-to="opacity-100 translate-y-0"
+            leave="duration-200 ease-in"
+            leave-from="opacity-100 translate-y-0"
+            leave-to="opacity-0 translate-y-5"
+          >
+            <div class="m-auto w-full p-5">
+              <DialogPanel
+                class="m-auto flex w-full max-w-sm flex-col gap-5 rounded-xl bg-gray-200 p-5 shadow-lg shadow-black/20 dark:bg-gray-800"
+              >
+                <header class="flex items-center justify-between gap-3">
+                  <DialogTitle class="text-base font-semibold">{{
+                    title
+                  }}</DialogTitle>
+
+                  <Btn
+                    v-if="closeable"
+                    size="sm"
+                    outline
+                    class="flex h-8 w-8 items-center justify-center rounded-full !p-0"
+                    @click="closeModal"
+                  >
+                    <XMarkIcon class="h-5 w-5" />
+                  </Btn>
+                </header>
+
+                <div>
+                  <slot />
+                </div>
+
+                <footer
+                  v-if="cancelable || confirmable"
+                  class="space-x-2 text-right"
+                >
+                  <Btn v-if="cancelable" outline @click="cancelAction">{{
+                    cancelText ?? $t('actions.cancel')
+                  }}</Btn>
+                  <Btn
+                    v-if="confirmable"
+                    variant="primary"
+                    @click="confirmAction"
+                    >{{ confirmText ?? $t('actions.confirm') }}</Btn
+                  >
+                </footer>
+              </DialogPanel>
+            </div>
+          </TransitionChild>
+        </div>
+      </Dialog>
+    </TransitionRoot>
+  </Teleport>
 </template>

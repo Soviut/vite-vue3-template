@@ -52,7 +52,7 @@ With watching enabled
 npm run test:watch
 ```
 
-To get a test coverage report
+Generate a test coverage report
 
 ```
 npm run test:coverage

@@ -11,6 +11,7 @@ Clone project with [`degit`](https://github.com/Rich-Harris/degit)
 
 ```
 npx degit soviut/vite-vue3-template project-name
+npm install
 ```
 
 ## Development

@@ -83,3 +83,16 @@ all linting and code style guidelines pass before committing code to a branch.
 
 It will run every time you commit so be prepared for a commit to take a few
 seconds to complete.
+
+## Post-Install Checklist
+
+Once you have installed the template, you should do the following
+
+[ ] update name in package.json
+[ ] update title in index.html
+[ ] update createHead title in main.ts
+[ ] update title in en.yaml
+[ ] remove commented out sidebar code in App.vue
+[ ] update project description at top of README
+[ ] remove Project Setup from README
+[ ] remove this checklist from README!!!

@@ -10,9 +10,7 @@ const message = ref('Hello world')
   </UseHead>
 
   <div>
-    <header class="mb-8">
-      <h1>{{ $t('pages.home.title') }}</h1>
-    </header>
+    <PageHeader :title="$t('pages.home.title')" class="mb-10" />
 
     <div>
       <p>{{ message }}</p>

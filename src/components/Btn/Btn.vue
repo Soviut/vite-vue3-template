@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed, useAttrs } from 'vue'
-import { Variant } from '@@/types'
+import { Variant, Size } from '@@/types'
 
 withDefaults(
   defineProps<{
     variant?: Variant
-    size?: 'sm' | 'md' | 'lg'
+    size?: Size
     outline?: boolean
   }>(),
   {
@@ -27,10 +27,10 @@ const isDisabled = computed(
       isDisabled && ($attrs.to || $attrs.href)
         ? 'span'
         : $attrs.to
-        ? 'RouterLink'
-        : $attrs.href
-        ? 'a'
-        : 'button'
+          ? 'RouterLink'
+          : $attrs.href
+            ? 'a'
+            : 'button'
     "
     class="inline-block rounded border text-center transition-colors duration-100 hover:no-underline focus:outline-none focus:ring-2 focus:ring-offset-2 dark:ring-offset-gray-900"
     :class="{

@@ -94,6 +94,7 @@ Once you have installed the template, you should do the following
 [ ] update title in en.yaml
 [ ] remove commented out sidebar code in App.vue
 [ ] update meta tags in index.html
+[ ] test og meta tags in https://developers.facebook.com/tools/debug/
 [ ] update favicon
 [ ] update project description at top of README
 [ ] remove Project Setup section from README

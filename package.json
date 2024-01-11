@@ -23,6 +23,7 @@
     "@vueuse/core": "^9.10.0",
     "@vueuse/head": "^1.1.26",
     "@vueuse/integrations": "^9.13.0",
+    "dayjs": "^1.11.10",
     "focus-trap": "^7.4.1",
     "pinia": "^2.0.36",
     "vue": "^3.3.2",

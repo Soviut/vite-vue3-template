@@ -17,3 +17,5 @@ export type VueClassAttr =
   | string
   | Record<string, boolean>
   | (string | Record<string, boolean>)[]
+
+export type DateLike = number | string | Date | Dayjs

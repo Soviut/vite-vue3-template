@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
 import path from 'path'
-import { defineConfig } from 'vite'
+import { PluginOption, defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueI18n from '@intlify/unplugin-vue-i18n/vite'
 import { visualizer } from 'rollup-plugin-visualizer'
@@ -16,7 +16,7 @@ export default defineConfig({
     visualizer({
       filename: './dist/stats.html',
       template: 'treemap', // treemap, sunburst, network
-    }),
+    }) as PluginOption,
   ],
 
   resolve: {

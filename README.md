@@ -93,6 +93,8 @@ Once you have installed the template, you should do the following
 [ ] update createHead title in main.ts
 [ ] update title in en.yaml
 [ ] remove commented out sidebar code in App.vue
+[ ] update meta tags in index.html
+[ ] update favicon
 [ ] update project description at top of README
-[ ] remove Project Setup from README
-[ ] remove this checklist from README!!!
+[ ] remove Project Setup section from README
+[ ] remove this Post-Install Checklist section from README

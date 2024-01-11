@@ -64,7 +64,7 @@ onUnmounted(() => {
   deactivate()
 })
 
-const open = async () => {
+const openSidebar = async () => {
   if (state.value === 'open' || state.value === 'pinned') return
 
   state.value = 'open'
@@ -74,7 +74,7 @@ const open = async () => {
   activate()
 }
 
-const close = async () => {
+const closeSidebar = async () => {
   if (state.value === 'closed') return
 
   state.value = 'closed'
@@ -83,17 +83,17 @@ const close = async () => {
   deactivate()
 }
 
-const toggle = () => {
+const toggleSidebar = () => {
   if (state.value === 'pinned') return
 
   if (state.value === 'open') {
-    close()
+    closeSidebar()
   } else {
-    open()
+    openSidebar()
   }
 }
 
-const pin = () => {
+const pinSidebar = () => {
   if (state.value === 'pinned') return
 
   state.value = 'pinned'
@@ -106,9 +106,9 @@ watch(
   () => props.open,
   (value) => {
     if (value) {
-      open()
+      openSidebar()
     } else {
-      close()
+      closeSidebar()
     }
   },
   { immediate: true }
@@ -118,14 +118,14 @@ watch(
   () => route.path,
   () => {
     if (state.value === 'open' && props.closeOnRouteChange) {
-      close()
+      closeSidebar()
     }
   }
 )
 
 onKeyStroke('Escape', (e) => {
   if (state.value === 'open') {
-    close()
+    closeSidebar()
   }
   e.preventDefault()
 })
@@ -143,9 +143,9 @@ watch(
   pastBreakpoint,
   (value) => {
     if (value) {
-      pin()
+      pinSidebar()
     } else {
-      close()
+      closeSidebar()
     }
   },
   { immediate: true }
@@ -168,7 +168,7 @@ watch(
           v-if="state === 'open'"
           class="fixed inset-0 z-10"
           :class="backdropClass"
-          @click="close"
+          @click="closeSidebar"
         />
       </Transition>
 
@@ -185,7 +185,7 @@ watch(
           v-if="state === 'open'"
           class="fixed top-2 right-2 z-20 block rounded-full bg-gray-500 p-3 hover:bg-gray-400 focus:bg-gray-400"
           :class="closeClass"
-          @click="close"
+          @click="closeSidebar"
         >
           <XMarkIcon class="h-6 w-6 text-white" />
         </button>
@@ -207,9 +207,9 @@ watch(
         >
           <slot
             name="aside"
-            :toggle="toggle"
-            :open="open"
-            :close="close"
+            :toggle="toggleSidebar"
+            :open="openSidebar"
+            :close="closeSidebar"
             :state="state"
           />
         </aside>
@@ -217,7 +217,12 @@ watch(
     </div>
 
     <div class="grow" :class="[bodyClass, state === 'pinned' && 'pl-64']">
-      <slot :toggle="toggle" :open="open" :close="close" :state="state" />
+      <slot
+        :toggle="toggleSidebar"
+        :open="openSidebar"
+        :close="closeSidebar"
+        :state="state"
+      />
     </div>
   </div>
 </template>

@@ -19,12 +19,12 @@ const item = computed(() => {
 
 <template>
   <useHead>
-    <title>{{ item.name }}</title>
+    <title>{{ item?.name }}</title>
   </useHead>
 
   <div>
     <PageHeader
-      :title="item.name"
+      :title="item?.name"
       :breadcrumbs="[{ text: $t('nav.items'), to: { name: 'items' } }]"
     />
   </div>

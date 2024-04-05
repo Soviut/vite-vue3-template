@@ -32,6 +32,7 @@ export default defineConfig({
 
   server: {
     port: 3000, // default is 5173 (site)
+    strictPort: true, // throw an error instead of auto-advancing port
   },
 
   test: {

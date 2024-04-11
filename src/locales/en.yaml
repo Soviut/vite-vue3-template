@@ -32,6 +32,7 @@ actions:
 # used for prompts and alerts
 messages:
   noModel: There are currently no {model}
+  na: N/A
 
 # form labels should have no suffix (eg: "email")
 # placeholders should have "<field>Placeholder" suffix

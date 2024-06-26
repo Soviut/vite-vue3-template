@@ -3,6 +3,7 @@
     "Vue.volar",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "Lokalise.i18n-ally"
+    "Lokalise.i18n-ally",
+    "bradlc.vscode-tailwindcss"
   ]
 }

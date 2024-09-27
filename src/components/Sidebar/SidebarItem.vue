@@ -15,10 +15,10 @@ defineProps<{
       disabled && ($attrs.to || $attrs.href)
         ? 'span'
         : $attrs.to
-        ? 'RouterLink'
-        : $attrs.href
-        ? 'a'
-        : 'button'
+          ? 'RouterLink'
+          : $attrs.href
+            ? 'a'
+            : 'button'
     "
     class="flex w-full items-center px-5 py-3 text-white hover:bg-white/5 hover:no-underline focus:bg-white/5 focus:no-underline focus:outline-none"
     active-class="!bg-primary-500"

@@ -183,7 +183,7 @@ watch(
       >
         <button
           v-if="state === 'open'"
-          class="fixed top-2 right-2 z-20 block rounded-full bg-gray-500 p-3 hover:bg-gray-400 focus:bg-gray-400"
+          class="fixed right-2 top-2 z-20 block rounded-full bg-gray-500 p-3 hover:bg-gray-400 focus:bg-gray-400"
           :class="closeClass"
           @click="closeSidebar"
         >

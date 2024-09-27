@@ -96,9 +96,9 @@ const localRemove = (toast: ToastMessage) => {
       class="pointer-events-none fixed z-50 w-full max-w-md gap-3 py-5"
       :class="[
         {
-          'top-0 left-0': options.position === 'top-left',
-          'top-0 left-1/2 -translate-x-1/2': options.position === 'top',
-          'top-0 right-0': options.position === 'top-right',
+          'left-0 top-0': options.position === 'top-left',
+          'left-1/2 top-0 -translate-x-1/2': options.position === 'top',
+          'right-0 top-0': options.position === 'top-right',
           'bottom-0 left-0': options.position === 'bottom-left',
           'bottom-0 left-1/2 -translate-x-1/2': options.position === 'bottom',
           'bottom-0 right-0': options.position === 'bottom-right',

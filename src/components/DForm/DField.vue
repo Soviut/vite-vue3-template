@@ -36,7 +36,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="grid gap-y-1 gap-x-3"
+    class="grid gap-x-3 gap-y-1"
     :class="isCheckbox && 'grid-cols-[min-content,1fr]'"
   >
     <div

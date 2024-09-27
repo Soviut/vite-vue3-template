@@ -16,7 +16,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:vue/vue3-recommended',
-    'prettier',
+    'plugin:prettier/recommended',
   ],
   rules: {
     // allow vue component files to be a single word eg: Index.vue

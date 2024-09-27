@@ -1,6 +1,5 @@
 {
   "recommendations": [
-    "Vue.volar",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "Lokalise.i18n-ally",

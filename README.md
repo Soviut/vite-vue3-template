@@ -64,6 +64,12 @@ npm run test:coverage
 npm run lint
 ```
 
+To fix linting errors
+
+```
+npm run lint:fix
+```
+
 ### Check for type errors
 
 ```

@@ -9,6 +9,7 @@
     "check": "vue-tsc --noEmit",
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.vue",
+    "lint:fix": "npm run lint -- --fix",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"

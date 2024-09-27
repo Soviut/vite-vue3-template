@@ -83,10 +83,9 @@ npm run format
 When opening the project in VSCode, popups to install the following recommended
 extensions should appear. These are defined in the `.vscode/extensions.json`.
 
-- [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
-- [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin)
+- [Vue](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-- [ESLint](dbaeumer.vscode-eslint)
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
 Additionally, key workspace settings are included in the `.vscode/settings.json`
 such as "Format on Save".

@@ -3,3 +3,6 @@ node_modules
 dist
 dist-ssr
 *.local
+
+# allows .env but ignores .env.local
+.env.*

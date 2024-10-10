@@ -4,6 +4,7 @@ import { PluginOption, defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueI18n from '@intlify/unplugin-vue-i18n/vite'
 import { visualizer } from 'rollup-plugin-visualizer'
+import sitemap from 'vite-plugin-sitemap'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,6 +13,12 @@ export default defineConfig({
     vueI18n({
       fullInstall: false, // do not install components and directives
       include: path.resolve(__dirname, './src/locales/**'),
+    }),
+    sitemap({
+      hostname: 'https://example.com',
+      exclude: [
+        '/stats', // exclude visualizer stats
+      ],
     }),
     visualizer({
       filename: './dist/stats.html',

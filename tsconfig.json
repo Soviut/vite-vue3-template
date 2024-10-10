@@ -12,6 +12,7 @@
     "skipLibCheck": true,
     "allowJs": true,
     "lib": ["esnext", "dom"],
+    "types": ["@intlify/unplugin-vue-i18n/messages"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
